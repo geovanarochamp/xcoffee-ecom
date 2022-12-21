@@ -1,6 +1,11 @@
 import XCoffeLogo from '../../assets/logo.png'
 import { ShoppingCartSimple, MapPin } from 'phosphor-react'
-import { Wrapper, HeaderContainer, HeaderButton } from './styles'
+import {
+	Wrapper,
+	HeaderContainer,
+	HeaderButton,
+	BackgroundColor,
+} from './styles'
 import { useEffect, useState } from 'react'
 
 export function Header() {
@@ -43,19 +48,21 @@ export function Header() {
 	}, [formatLocation])
 
 	return (
-		<Wrapper>
-			<HeaderContainer>
-				<img src={XCoffeLogo} alt="xcoffee escrito em preto" />
-				<div>
-					<HeaderButton isTransparent>
-						<MapPin size={24} />
-						{isFetching ? 'Buscando localização' : formatLocation}
-					</HeaderButton>
-					<HeaderButton>
-						<ShoppingCartSimple size={24} />
-					</HeaderButton>
-				</div>
-			</HeaderContainer>
-		</Wrapper>
+		<BackgroundColor>
+			<Wrapper>
+				<HeaderContainer>
+					<img src={XCoffeLogo} alt="xcoffee escrito em preto" />
+					<div>
+						<HeaderButton isTransparent>
+							<MapPin size={24} />
+							{isFetching ? 'Buscando localização' : formatLocation}
+						</HeaderButton>
+						<HeaderButton>
+							<ShoppingCartSimple size={24} />
+						</HeaderButton>
+					</div>
+				</HeaderContainer>
+			</Wrapper>
+		</BackgroundColor>
 	)
 }

@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+export const BackgroundColor = styled.div`
+	background: #f7f4ef;
+`
 export const Wrapper = styled.div`
 	width: 70vw;
 	margin: auto;
@@ -37,6 +40,6 @@ export const HeaderButton = styled.button<{ isTransparent?: boolean }>`
 	font-weight: 400;
 	font-size: 1.4rem;
 
-	color: ${(props) => props.theme.primary};
+	color: ${(props) => props.theme['primary-dark']};
 	cursor: pointer;
 `

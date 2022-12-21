@@ -13,6 +13,6 @@ export const defaultTheme = {
 	'gray-900': '#272221',
 
 	'primary': '#BF6B4C',
-	'primary-light': '#ffe1d6',
+	'primary-light': '#e7bdad',
 	'primary-dark': '#934c32',
 }

@@ -19,15 +19,16 @@ export const GlobalStyle = createGlobalStyle`
 		border-radius: 4px;
     }
 
-	h1, h2 {
-		font-family: 'Anton', sans-serif;
+	h1 {
+		font-size: 4.8rem;
 		color: ${(props) => props.theme['gray-800']};
-		letter-spacing: 0.75px;
+
 	}
 
-	h3, h4 {
-		font-family: 'Roboto', sans-serif;
-		color: ${(props) => props.theme.primary};
+	h3 {
+		font-size: 2rem;
+		color: ${(props) => props.theme['gray-700']};
+		font-weight: normal;
 	}
 
     body {
