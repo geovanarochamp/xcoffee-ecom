@@ -9,6 +9,10 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+	:root{
+		font-size: 62.5%; /* 10px */
+	}
+
     :focus {
         outline: 0;
         box-shadow: 0 0 0 2px ${(props) => props.theme.primary};

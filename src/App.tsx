@@ -1,12 +1,17 @@
 import { ThemeProvider } from 'styled-components'
-import { GlobalStyle } from './styles/global'
+import { Router } from './Router'
+import { BrowserRouter } from 'react-router-dom'
+
 import { defaultTheme } from './styles/themes/default'
+import { GlobalStyle } from './styles/global'
 
 function App() {
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<GlobalStyle />
-			<h1>XCoffee - Microlotes premiados</h1>;
+			<BrowserRouter>
+				<Router />
+			</BrowserRouter>
 		</ThemeProvider>
 	)
 }
