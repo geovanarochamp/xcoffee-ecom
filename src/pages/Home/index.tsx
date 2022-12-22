@@ -1,12 +1,11 @@
 import { HomeIntro } from './Intro'
-import { Products } from './Products'
-import { Container } from './styles'
+import { About } from './About'
 
 export function Home() {
 	return (
-		<Container>
+		<>
 			<HomeIntro />
-			<Products />
-		</Container>
+			<About />
+		</>
 	)
 }

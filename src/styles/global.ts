@@ -22,13 +22,35 @@ export const GlobalStyle = createGlobalStyle`
 	h1 {
 		font-size: 4.8rem;
 		color: ${(props) => props.theme['gray-800']};
+	}
 
+	h2 {
+		font-size: 30px;
+    	line-height: 48px;
+		text-align: center;
+		color: ${(props) => props.theme['gray-800']}
 	}
 
 	h3 {
+		font-weight: 700;
+		font-size: 2rem;
+		line-height: 130%;
+		color: ${(props) => props.theme['gray-700']};
+	}
+
+	h4 {
 		font-size: 2rem;
 		color: ${(props) => props.theme['gray-700']};
 		font-weight: normal;
+	}
+
+
+	p {
+		margin-top: .8rem;
+		font-weight: 400;
+		font-size: 1.4rem;
+		line-height: 130%;
+		text-align: center;
 	}
 
     body {

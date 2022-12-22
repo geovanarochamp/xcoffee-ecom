@@ -11,10 +11,10 @@ export function HomeIntro() {
 							Aprecie o café em suas várias formas artesanais:{' '}
 							<span>sabor e arte.</span>
 						</h1>
-						<h3>
+						<h4>
 							Uma experiência que agrada o paladar e aquece o coração de quem
 							aprecia.
-						</h3>
+						</h4>
 					</Headlines>
 					<img src={MockupImg} alt="" />
 				</Wrapper>
