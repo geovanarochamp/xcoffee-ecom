@@ -12,6 +12,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
 	padding: 7.8rem 0;
 	display: flex;
+	align-items: center;
 	gap: 5.6rem;
 
 	img {
@@ -22,7 +23,6 @@ export const Wrapper = styled.div`
 export const Headlines = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 
 	gap: 1.6rem;
 

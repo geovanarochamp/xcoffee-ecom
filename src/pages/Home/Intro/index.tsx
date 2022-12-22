@@ -12,8 +12,8 @@ export function HomeIntro() {
 							<span>sabor e arte.</span>
 						</h1>
 						<h3>
-							Uma experiência que agrada não apenas o paladar, mas também a
-							visão de quem aprecia.
+							Uma experiência que agrada o paladar e aquece o coração de quem
+							aprecia.
 						</h3>
 					</Headlines>
 					<img src={MockupImg} alt="" />

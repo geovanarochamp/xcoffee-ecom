@@ -9,21 +9,17 @@ import {
 import { useEffect, useState } from 'react'
 
 export function Header() {
-	const [latitude, setLatitude] = useState(0)
-	const [longitude, setlongitude] = useState(0)
-	const [isFetching, setIsFetching] = useState(false)
-	const [formatLocation, setFormatLocation] = useState('Buscando localização')
+	const [formatLocation, setFormatLocation] = useState('')
 
 	function getCurrentLocation() {
 		navigator.geolocation.getCurrentPosition((position) => {
-			setLatitude(position.coords.latitude)
-			setlongitude(position.coords.longitude)
+			const latitude = position.coords.latitude
+			const longitude = position.coords.longitude
+			formatCurrentLocation(latitude, longitude)
 		})
 	}
 
-	async function formatCurrentLocation() {
-		setIsFetching(true)
-
+	async function formatCurrentLocation(latitude: number, longitude: number) {
 		const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyAB8WMNzhKwmM8pzDFdQV1X9Vvih1HU_C8`
 
 		await fetch(url)
@@ -31,19 +27,20 @@ export function Header() {
 			.then((data) => {
 				const city = data.results[0]?.address_components[3]?.long_name || ''
 				const state = data.results[0]?.address_components[4]?.short_name || ''
-				setFormatLocation(`${city}, ${state}`)
+
+				if (city && state) {
+					setFormatLocation(`${city}, ${state}`)
+				} else {
+					setFormatLocation('')
+				}
 			})
 			.catch((error) => {
 				console.log(error)
-			})
-			.finally(() => {
-				setIsFetching(false)
 			})
 	}
 
 	useEffect(() => {
 		getCurrentLocation()
-		formatCurrentLocation()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formatLocation])
 
@@ -55,7 +52,7 @@ export function Header() {
 					<div>
 						<HeaderButton isTransparent>
 							<MapPin size={24} />
-							{isFetching ? 'Buscando localização' : formatLocation}
+							{formatLocation}
 						</HeaderButton>
 						<HeaderButton>
 							<ShoppingCartSimple size={24} />
