@@ -5,7 +5,7 @@ export const TitleContainer = styled.div`
 `
 
 export const Separator = styled.div`
-	width: 10%;
+	width: 5%;
 	margin: 1rem auto;
 	border-bottom: 3px solid ${(props) => props.theme.primary};
 `
