@@ -16,5 +16,5 @@ export const defaultTheme = {
 	'primary-light': '#e7bdad',
 	'primary-dark': '#934c32',
 
-	'bg-light-color': '#eeebe6',
+	'bg-light-color': '#f7f4ef',
 }
