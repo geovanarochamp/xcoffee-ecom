@@ -2,7 +2,7 @@ import { Separator, TitleContainer } from './styles'
 
 type SectionTitleProps = {
 	title: string
-	subtitle: string
+	subtitle?: string
 }
 
 export function SectionTitle({ title, subtitle }: SectionTitleProps) {

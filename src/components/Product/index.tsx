@@ -1,4 +1,5 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import { useState } from 'react'
 import {
 	Amount,
 	ButtonsWrapper,
@@ -14,6 +15,10 @@ type ProductProps = {
 }
 
 export function Product({ img, title, price }: ProductProps) {
+	const [amount, setAmout] = useState(0)
+	const [cart, setCart] = useState([{}])
+
+	const handleRemoveFromCart = () => {}
 	return (
 		<Container>
 			<ComboImage src={img} alt="" />
@@ -26,7 +31,7 @@ export function Product({ img, title, price }: ProductProps) {
 				</div>
 				<ButtonsWrapper>
 					<Amount>
-						<button>
+						<button onClick={handleRemoveFromCart}>
 							<Minus size={15} weight="bold" />
 						</button>
 						<span>1</span>

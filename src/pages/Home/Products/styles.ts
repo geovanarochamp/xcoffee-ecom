@@ -11,5 +11,5 @@ export const ProductsWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	row-gap: 10rem;
-	column-gap: 3.2rem;
+	column-gap: 4rem;
 `

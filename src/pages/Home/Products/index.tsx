@@ -1,6 +1,6 @@
 import { Product } from '../../../components/Product'
 import { SectionTitle } from '../../../components/SectionTitle'
-import { Container, ProductsWrapper, TitleWrapper } from './styles'
+import { Container, ProductsWrapper } from './styles'
 
 import ObraPreparo from '../../../assets/obra-preparo.png'
 import ObraMoagem from '../../../assets/obra-moagem.png'

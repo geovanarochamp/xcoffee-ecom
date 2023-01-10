@@ -38,7 +38,7 @@ export const ButtonsWrapper = styled.div`
 	button {
 		padding: 1rem;
 
-		background: ${(props) => props.theme['primary-dark']};
+		background: ${(props) => props.theme.primary};
 		outline: none;
 		border: none;
 		border-radius: 8px;
@@ -62,5 +62,9 @@ export const Amount = styled.div`
 		border: none;
 
 		cursor: pointer;
+	}
+
+	span {
+		padding: 0 0.8rem;
 	}
 `
