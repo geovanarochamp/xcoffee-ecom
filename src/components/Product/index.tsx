@@ -9,39 +9,39 @@ import {
 } from './styles'
 
 type ProductProps = {
-	img: string
-	title: string
-	price: string
+	data: {
+		id: string
+		title: string
+		price: string
+		img: string
+	}
 }
 
-export function Product({ img, title, price }: ProductProps) {
-	const [amount, setAmount] = useState(0)
+export function Product({ data }: ProductProps) {
+
+	console.log(cart)
 
 	return (
 		<Container>
-			<ComboImage src={img} alt="" />
-			<h3>{title}</h3>
+			<ComboImage src={data.img} alt="" />
+			<h3>{data.title}</h3>
 			<p>+ 3 microlotes premiados e 1 ebook ilustrado</p>
 			<CartWrapper>
 				<div>
 					<span>R$ </span>
-					<strong>{price}</strong>
+					<strong>{data.price}</strong>
 				</div>
 				<ButtonsWrapper>
 					<Amount>
-						<button
-							onClick={() =>
-								setAmount((amount) => (amount > 0 ? amount - 1 : amount))
-							}
-						>
+						<button onClick={handleRemoveAmount}>
 							<Minus size={15} weight="bold" />
 						</button>
 						<span>{amount}</span>
-						<button onClick={() => setAmount((amount) => amount + 1)}>
+						<button onClick={handleAddAmount}>
 							<Plus size={15} weight="bold" />
 						</button>
 					</Amount>
-					<button>
+					<button onClick={handleAddNewCartItem}>
 						<ShoppingCartSimple size={18} />
 					</button>
 				</ButtonsWrapper>
