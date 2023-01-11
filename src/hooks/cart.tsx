@@ -1,17 +1,17 @@
-import { createContext, useContext, useState } from 'react'
+// import { createContext, useContext, useState } from 'react'
 
-export const CartContext = createContext
+// export const CartContext = createContext
 
-function CartProvider({ children }) {
-	function removeFromCart() {
-		
-	}
-	return <CartContext.Provider>{children}</CartContext.Provider>
-}
-function useCart() {
-	const context = useContext(CartContext)
+// function CartProvider({ children }) {
+// 	function removeFromCart() {
 
-	return context
-}
+// 	}
+// 	return <CartContext.Provider>{children}</CartContext.Provider>
+// }
+// function useCart() {
+// 	const context = useContext(CartContext)
 
-export { CartProvider, useCart }
+// 	return context
+// }
+
+// export { CartProvider, useCart }

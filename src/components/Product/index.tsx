@@ -15,10 +15,8 @@ type ProductProps = {
 }
 
 export function Product({ img, title, price }: ProductProps) {
-	const [amount, setAmout] = useState(0)
-	const [cart, setCart] = useState([{}])
+	const [amount, setAmount] = useState(0)
 
-	const handleRemoveFromCart = () => {}
 	return (
 		<Container>
 			<ComboImage src={img} alt="" />
@@ -31,11 +29,15 @@ export function Product({ img, title, price }: ProductProps) {
 				</div>
 				<ButtonsWrapper>
 					<Amount>
-						<button onClick={handleRemoveFromCart}>
+						<button
+							onClick={() =>
+								setAmount((amount) => (amount > 0 ? amount - 1 : amount))
+							}
+						>
 							<Minus size={15} weight="bold" />
 						</button>
-						<span>1</span>
-						<button>
+						<span>{amount}</span>
+						<button onClick={() => setAmount((amount) => amount + 1)}>
 							<Plus size={15} weight="bold" />
 						</button>
 					</Amount>
