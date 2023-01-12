@@ -4,14 +4,17 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
+import { CartProvider } from './hooks/cart'
 
 function App() {
 	return (
 		<ThemeProvider theme={defaultTheme}>
-			<GlobalStyle />
-			<BrowserRouter>
-				<Router />
-			</BrowserRouter>
+			<CartProvider>
+				<BrowserRouter>
+					<Router />
+				</BrowserRouter>
+				<GlobalStyle />
+			</CartProvider>
 		</ThemeProvider>
 	)
 }

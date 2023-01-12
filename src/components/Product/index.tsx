@@ -1,5 +1,7 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
 import { useState } from 'react'
+import { useCart } from '../../hooks/cart'
+
 import {
 	Amount,
 	ButtonsWrapper,
@@ -18,8 +20,28 @@ type ProductProps = {
 }
 
 export function Product({ data }: ProductProps) {
+	const [amount, setAmount] = useState(0)
 
-	console.log(cart)
+	const { cartItems, setCartItems } = useCart()
+
+	function handleRemoveAmount() {
+		setAmount((amount) => (amount > 0 ? amount - 1 : amount))
+	}
+
+	function handleAddAmount() {
+		setAmount((amount) => amount + 1)
+	}
+
+	function handleAddNewCartItem() {
+		const newItem = {
+			id: data.id,
+			title: data.title,
+			price: data.price,
+			amount,
+		}
+		setCartItems([...cartItems, newItem])
+	}
+	console.log(cartItems)
 
 	return (
 		<Container>
