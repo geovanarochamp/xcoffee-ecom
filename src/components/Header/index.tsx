@@ -7,6 +7,7 @@ import {
 	BackgroundColor,
 } from './styles'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export function Header() {
 	const [formatLocation, setFormatLocation] = useState('')
@@ -48,15 +49,19 @@ export function Header() {
 		<BackgroundColor>
 			<Wrapper>
 				<HeaderContainer>
-					<img src={XCoffeLogo} alt="xcoffee escrito em preto" />
+					<Link to="/">
+						<img src={XCoffeLogo} alt="xcoffee escrito em preto" />
+					</Link>
 					<div>
 						<HeaderButton isTransparent>
 							<MapPin size={24} />
 							{formatLocation}
 						</HeaderButton>
-						<HeaderButton>
-							<ShoppingCartSimple size={24} />
-						</HeaderButton>
+						<Link to="/checkout">
+							<HeaderButton>
+								<ShoppingCartSimple size={24} />
+							</HeaderButton>
+						</Link>
 					</div>
 				</HeaderContainer>
 			</Wrapper>
