@@ -39,8 +39,22 @@ export function Product({ data }: ProductProps) {
 			price: data.price,
 			amount,
 		}
-		setCartItems([...cartItems, newItem])
+		if (newItem.amount > 0) {
+			const checkItemExists = cartItems.filter(
+				(item: any) => item.id === newItem.id,
+			)
+
+			if (checkItemExists) {
+				const removePreviousItemFromCart = cartItems.filter(
+					(item: any) => item.id !== newItem.id,
+				)
+				setCartItems([...removePreviousItemFromCart, newItem])
+			} else {
+				setCartItems([...cartItems, newItem])
+			}
+		}
 	}
+
 	console.log(cartItems)
 
 	return (
