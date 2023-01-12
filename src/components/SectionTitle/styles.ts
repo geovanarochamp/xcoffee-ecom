@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const TitleContainer = styled.div`
-	margin: 10rem 0 8rem;
+	margin: 10rem 0 4rem;
 `
 
 export const Separator = styled.div`

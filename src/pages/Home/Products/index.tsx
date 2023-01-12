@@ -9,6 +9,7 @@ import ObraMoagem from '../../../assets/obra-moagem.png'
 import ObraColheita from '../../../assets/obra-colheita.png'
 import ObraSecagem from '../../../assets/obra-secagem.png'
 import ObraTorrefacao from '../../../assets/obra-torrefacao.png'
+import { GoToCart } from '../../../components/GoToCart'
 
 export function Products() {
 	const products = [
@@ -45,13 +46,12 @@ export function Products() {
 	]
 	return (
 		<Container>
-			<div>
-				<SectionTitle
-					title="Coffee & Art"
-					subtitle="Compra simples e segura. Entrega rápida e rastreada."
-				/>
-			</div>
+			<SectionTitle
+				title="Coffee & Art"
+				subtitle="Compra simples e segura. Entrega rápida e rastreada."
+			/>
 
+			<GoToCart />
 			<ProductsWrapper>
 				{products.map((product) => (
 					<Product key={product.id} data={product} />

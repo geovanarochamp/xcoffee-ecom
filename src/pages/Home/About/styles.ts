@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 	width: 70vw;
-	margin: auto;
-	margin-bottom: 8rem;
+	margin: 0 auto 8rem;
 `
 export const Wrapper3Col = styled.div`
 	display: flex;
 	justify-content: center;
 	gap: 3rem;
+	margin-top: 6rem;
 `
 export const Col = styled.div`
 	width: 33%;

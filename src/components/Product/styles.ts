@@ -19,7 +19,7 @@ export const CartWrapper = styled.div`
 	justify-content: center;
 
 	gap: 4rem;
-	margin-top: 2rem;
+	margin: 2rem auto 1rem;
 	color: ${(props) => props.theme['gray-700']};
 
 	span {
@@ -67,4 +67,9 @@ export const Amount = styled.div`
 	span {
 		padding: 0 0.8rem;
 	}
+`
+
+export const InfoMessage = styled.span`
+	color: ${(props) => props.theme.primary};
+	font-size: 1.4rem;
 `

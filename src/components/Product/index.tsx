@@ -8,6 +8,7 @@ import {
 	CartWrapper,
 	ComboImage,
 	Container,
+	InfoMessage,
 } from './styles'
 
 type ProductProps = {
@@ -19,17 +20,27 @@ type ProductProps = {
 	}
 }
 
+type ItemProps = {
+	id: string
+	title: string
+	price: string
+	img: string
+}
+
 export function Product({ data }: ProductProps) {
 	const [amount, setAmount] = useState(0)
+	const [infoMessage, setInfoMessage] = useState('')
 
 	const { cartItems, setCartItems } = useCart()
 
 	function handleRemoveAmount() {
-		setAmount((amount) => (amount > 0 ? amount - 1 : amount))
+		setAmount(amount > 0 ? amount - 1 : amount)
+		setInfoMessage('')
 	}
 
 	function handleAddAmount() {
 		setAmount((amount) => amount + 1)
+		setInfoMessage('')
 	}
 
 	function handleAddNewCartItem() {
@@ -37,21 +48,28 @@ export function Product({ data }: ProductProps) {
 			id: data.id,
 			title: data.title,
 			price: data.price,
+			img: data.img,
 			amount,
 		}
 		if (newItem.amount > 0) {
 			const checkItemExists = cartItems.filter(
-				(item: any) => item.id === newItem.id,
+				(item: ItemProps) => item.id === newItem.id,
 			)
 
 			if (checkItemExists) {
 				const removePreviousItemFromCart = cartItems.filter(
-					(item: any) => item.id !== newItem.id,
+					(item: ItemProps) => item.id !== newItem.id,
 				)
 				setCartItems([...removePreviousItemFromCart, newItem])
 			} else {
+				console.log('entrei')
 				setCartItems([...cartItems, newItem])
 			}
+			setInfoMessage('✓ Adicionado ao carrinho')
+		} else {
+			setInfoMessage(
+				'✖ Não foi possível adicionar ao carrinho. Verifique a quantidade.',
+			)
 		}
 	}
 
@@ -82,6 +100,7 @@ export function Product({ data }: ProductProps) {
 					</button>
 				</ButtonsWrapper>
 			</CartWrapper>
+			<InfoMessage>{infoMessage}</InfoMessage>
 		</Container>
 	)
 }

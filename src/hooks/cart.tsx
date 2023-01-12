@@ -1,13 +1,26 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 
-export type CartProviderProps = {
+type CartItemsData = {
+	id: string
+	title: string
+	price: string
+	img: string
+	amount: number
+}
+
+type CartContextProps = {
+	cartItems: CartItemsData[]
+	setCartItems: (data: CartItemsData[]) => void
+}
+
+type CartProviderProps = {
 	children: ReactNode
 }
 
-export const CartContext = createContext({} as any)
+export const CartContext = createContext({} as CartContextProps)
 
 function CartProvider({ children }: CartProviderProps) {
-	const [cartItems, setCartItems] = useState([])
+	const [cartItems, setCartItems] = useState<CartItemsData[]>([])
 	return (
 		<CartContext.Provider value={{ cartItems, setCartItems }}>
 			{children}
