@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import XCoffeLogo from '../../assets/logo.png'
 import { ShoppingCartSimple, MapPin } from 'phosphor-react'
 import {
@@ -10,7 +11,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function Header() {
-	const [formatLocation, setFormatLocation] = useState('')
+	const [formatLocation, setFormatLocation] = useState('Buscando localização')
 
 	function getCurrentLocation() {
 		navigator.geolocation.getCurrentPosition((position) => {
@@ -22,22 +23,59 @@ export function Header() {
 
 	async function formatCurrentLocation(latitude: number, longitude: number) {
 		const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyAB8WMNzhKwmM8pzDFdQV1X9Vvih1HU_C8`
+		let city
+		let state
 
 		await fetch(url)
 			.then((response) => response.json())
-			.then((data) => {
-				const city = data.results[0]?.address_components[3]?.long_name || ''
-				const state = data.results[0]?.address_components[4]?.short_name || ''
-
-				if (city && state) {
-					setFormatLocation(`${city}, ${state}`)
-				} else {
-					setFormatLocation('')
-				}
+			.then((data: google.maps.GeocoderResponse) => {
+				data.results.map((item) => {
+					console.log(item)
+					return item.types.map((type) => {
+						return (
+							type.includes('administrative_area_level_2') &&
+							item.address_components.map((addressComponent) => {
+								return addressComponent.types.map((addressComponentType) => {
+									return (
+										addressComponentType.includes(
+											'administrative_area_level_2',
+										) && (city = addressComponent.short_name)
+									)
+								})
+							})
+						)
+					})
+				})
 			})
 			.catch((error) => {
 				console.log(error)
 			})
+
+		await fetch(url)
+			.then((response) => response.json())
+			.then((data: google.maps.GeocoderResponse) => {
+				data.results.map((item) => {
+					console.log(item)
+					return item.types.map((type) => {
+						return (
+							type.includes('administrative_area_level_1') &&
+							item.address_components.map((addressComponent) => {
+								return addressComponent.types.map((addressComponentType) => {
+									return (
+										addressComponentType.includes(
+											'administrative_area_level_1',
+										) && (state = addressComponent.short_name)
+									)
+								})
+							})
+						)
+					})
+				})
+			})
+			.catch((error) => {
+				console.log(error)
+			})
+		setFormatLocation(`${city}, ${state}`)
 	}
 
 	useEffect(() => {
