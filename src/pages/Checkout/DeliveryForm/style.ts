@@ -42,7 +42,7 @@ export const Form = styled.form`
 		background: ${(props) => props.theme['gray-300']};
 		border: 1px solid ${(props) => props.theme['gray-400']};
 		border-radius: 4px;
-		font-size: 14px;
+		font-size: 1.4rem;
 	}
 `
 
