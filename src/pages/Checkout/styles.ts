@@ -17,8 +17,10 @@ export const FormsWrapper = styled.div`
 	flex-direction: column;
 	gap: 1.2rem;
 	flex: 1;
+	width: 65%;
 `
 export const OrderWrapper = styled.div`
+	width: 35%;
 	display: flex;
 	flex-direction: column;
 	gap: 1.2rem;

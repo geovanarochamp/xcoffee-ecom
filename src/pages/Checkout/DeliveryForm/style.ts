@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	width: 100%;
 	padding: 4rem;
 	background: ${(props) => props.theme['gray-200']};
 	border-radius: 6px;
@@ -47,18 +46,26 @@ export const Form = styled.form`
 `
 
 export const CepInput = styled.input`
-	width: 33%;
+	width: auto;
 `
 
 export const Col2 = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 2fr;
-	row-gap: 1.2rem;
 	column-gap: 1.2rem;
 `
 
 export const Col3 = styled.div`
-	display: grid;
-	grid-template-columns: 2fr 3fr 1fr;
-	column-gap: 1.2rem;
+	display: flex;
+	gap: 1.2rem;
+	flex: 1;
+	:nth-of-type(1) {
+		flex-grow: 2;
+	}
+	:nth-of-type(2) {
+		flex-grow: 3;
+	}
+	:nth-of-type(3) {
+		flex-grow: 1;
+	}
 `

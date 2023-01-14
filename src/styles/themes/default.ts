@@ -13,7 +13,7 @@ export const defaultTheme = {
 	'gray-900': '#272221',
 
 	'primary': '#BF6B4C',
-	'primary-light': '#e7bdad',
+	'primary-light': '#f0cbbd',
 	'primary-dark': '#934c32',
 
 	'bg-light-color': '#f7f4ef',

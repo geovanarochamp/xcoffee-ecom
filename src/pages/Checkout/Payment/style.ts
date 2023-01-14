@@ -53,6 +53,10 @@ export const ButtonWrapper = styled.div`
 
 		cursor: pointer;
 		flex: 1;
+
+		&:focus {
+			background: ${(props) => props.theme['primary-light']};
+		}
 	}
 
 	svg {
