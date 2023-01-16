@@ -1,9 +1,12 @@
-import { Minus, Plus } from 'phosphor-react'
+import { Minus, Plus, Trash } from 'phosphor-react'
 import { useState } from 'react'
 import { useCart } from '../../../hooks/cart'
 import {
 	Amount,
+	ButtonsWrapper,
+	ConfirmOrderButton,
 	Container,
+	EditOrderWrapper,
 	ItemWrapper,
 	TotalInfo,
 	TotalWrapper,
@@ -27,25 +30,29 @@ export function Order() {
 
 	return (
 		<Container>
-			<h2>Order</h2>
 			<div>
 				{cartItems.map((item) => (
 					<ItemWrapper key={item.id}>
-						<div>
+						<EditOrderWrapper>
 							<img src={item.img} alt="" />
 							<div>
 								<span>{item.title}</span>
-								<Amount>
-									<button onClick={handleRemoveAmount}>
-										<Minus size={15} weight="bold" />
+								<ButtonsWrapper>
+									<Amount>
+										<button onClick={handleRemoveAmount}>
+											<Minus size={15} weight="bold" />
+										</button>
+										<span>{item.amount}</span>
+										<button onClick={handleAddAmount}>
+											<Plus size={15} weight="bold" />
+										</button>
+									</Amount>
+									<button>
+										<Trash size={15} /> Remover
 									</button>
-									<span>{item.amount}</span>
-									<button onClick={handleAddAmount}>
-										<Plus size={15} weight="bold" />
-									</button>
-								</Amount>
+								</ButtonsWrapper>
 							</div>
-						</div>
+						</EditOrderWrapper>
 						<strong>R$ {item.price}</strong>
 					</ItemWrapper>
 				))}
@@ -53,11 +60,11 @@ export function Order() {
 			<TotalWrapper>
 				<TotalInfo>
 					<span>Total de Itens</span>
-					<span>{itemTotal.toFixed(2).replace('.', ',')}</span>
+					<span>R$ {itemTotal.toFixed(2).replace('.', ',')}</span>
 				</TotalInfo>
 				<TotalInfo>
 					<span>Entrega</span>
-					<span>{deliveryFee.toFixed(2).replace('.', ',')}</span>
+					<span>R$ R$ {deliveryFee.toFixed(2).replace('.', ',')}</span>
 				</TotalInfo>
 				<TotalInfo>
 					<strong>Total</strong>
@@ -65,7 +72,7 @@ export function Order() {
 				</TotalInfo>
 			</TotalWrapper>
 
-			<button>CONFIRMAR PEDIDO</button>
+			<ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
 		</Container>
 	)
 }
