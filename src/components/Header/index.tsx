@@ -30,7 +30,6 @@ export function Header() {
 			.then((response) => response.json())
 			.then((data: google.maps.GeocoderResponse) => {
 				data.results.map((item) => {
-					console.log(item)
 					return item.types.map((type) => {
 						return (
 							type.includes('administrative_area_level_2') &&
@@ -55,7 +54,6 @@ export function Header() {
 			.then((response) => response.json())
 			.then((data: google.maps.GeocoderResponse) => {
 				data.results.map((item) => {
-					console.log(item)
 					return item.types.map((type) => {
 						return (
 							type.includes('administrative_area_level_1') &&

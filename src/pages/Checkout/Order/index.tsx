@@ -1,5 +1,4 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import { useState } from 'react'
 import { useCart } from '../../../hooks/cart'
 import {
 	Amount,
@@ -12,16 +11,57 @@ import {
 	TotalWrapper,
 } from './style'
 
+type CartItemsData = {
+	id: string
+	title: string
+	price: number
+	img: string
+	amount: number
+	total: number
+}
+
 export function Order() {
 	const { cartItems, setCartItems } = useCart()
-	const [amount, setAmount] = useState(0)
 
-	function handleRemoveAmount() {
-		setAmount(amount > 0 ? amount - 1 : amount)
+	function setNewItem(newItem: CartItemsData) {
+		const cartItemsWithOutItem = cartItems.filter(
+			(item) => item.id !== newItem.id,
+		)
+		setCartItems([...cartItemsWithOutItem, newItem])
 	}
 
-	function handleAddAmount() {
-		setAmount((amount) => amount + 1)
+	function handleRemoveAmount(item: CartItemsData) {
+		const previousAmount = item.amount
+		if (previousAmount > 1) {
+			const amount = previousAmount - 1
+
+			const newItem = {
+				id: item.id,
+				title: item.title,
+				price: item.price,
+				img: item.img,
+				amount,
+				total: item.price * amount,
+			}
+
+			setNewItem(newItem)
+		}
+	}
+
+	function handleAddAmount(item: CartItemsData) {
+		const previousAmount = item.amount
+		const amount = previousAmount + 1
+
+		const newItem = {
+			id: item.id,
+			title: item.title,
+			price: item.price,
+			img: item.img,
+			amount,
+			total: item.price * amount,
+		}
+
+		setNewItem(newItem)
 	}
 
 	function handleRemoveItem(id: string) {
@@ -44,11 +84,11 @@ export function Order() {
 								<span>{item.title}</span>
 								<ButtonsWrapper>
 									<Amount>
-										<button onClick={handleRemoveAmount}>
+										<button onClick={() => handleRemoveAmount(item)}>
 											<Minus size={15} weight="bold" />
 										</button>
 										<span>{item.amount}</span>
-										<button onClick={handleAddAmount}>
+										<button onClick={() => handleAddAmount(item)}>
 											<Plus size={15} weight="bold" />
 										</button>
 									</Amount>
@@ -58,7 +98,7 @@ export function Order() {
 								</ButtonsWrapper>
 							</div>
 						</EditOrderWrapper>
-						<strong>R$ {item.price}</strong>
+						<strong>R$ {item.total.toFixed(2).replace('.', ',')}</strong>
 					</ItemWrapper>
 				))}
 			</div>

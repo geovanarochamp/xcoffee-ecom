@@ -16,31 +16,31 @@ export function Products() {
 		{
 			id: uuidv4(),
 			title: 'Combo Obra Preparo',
-			price: '697,00',
+			price: 697,
 			img: ObraPreparo,
 		},
 		{
 			id: uuidv4(),
 			title: 'Combo Obra Colheita',
-			price: '697,00',
+			price: 697,
 			img: ObraColheita,
 		},
 		{
 			id: uuidv4(),
 			title: 'Combo Obra Moagem',
-			price: '697,00',
+			price: 697,
 			img: ObraMoagem,
 		},
 		{
 			id: uuidv4(),
 			title: 'Combo Obra Secagem',
-			price: '697,00',
+			price: 697,
 			img: ObraSecagem,
 		},
 		{
 			id: uuidv4(),
 			title: 'Combo Obra Torrefação',
-			price: '697,00',
+			price: 697,
 			img: ObraTorrefacao,
 		},
 	]

@@ -3,9 +3,10 @@ import { createContext, ReactNode, useContext, useState } from 'react'
 type CartItemsData = {
 	id: string
 	title: string
-	price: string
+	price: number
 	img: string
 	amount: number
+	total: number
 }
 
 type CartContextProps = {

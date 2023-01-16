@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useCart } from '../../hooks/cart'
 
 import {
@@ -15,7 +16,7 @@ type ProductProps = {
 	data: {
 		id: string
 		title: string
-		price: string
+		price: number
 		img: string
 	}
 }
@@ -23,7 +24,7 @@ type ProductProps = {
 type ItemProps = {
 	id: string
 	title: string
-	price: string
+	price: number
 	img: string
 }
 
@@ -50,6 +51,7 @@ export function Product({ data }: ProductProps) {
 			price: data.price,
 			img: data.img,
 			amount,
+			total: data.price * amount,
 		}
 		if (newItem.amount > 0) {
 			const checkItemExists = cartItems.filter(
@@ -73,8 +75,6 @@ export function Product({ data }: ProductProps) {
 		}
 	}
 
-	console.log(cartItems)
-
 	return (
 		<Container>
 			<ComboImage src={data.img} alt="" />
@@ -83,7 +83,7 @@ export function Product({ data }: ProductProps) {
 			<CartWrapper>
 				<div>
 					<span>R$ </span>
-					<strong>{data.price}</strong>
+					<strong>{data.price.toFixed(2).replace('.', ',')}</strong>
 				</div>
 				<ButtonsWrapper>
 					<Amount>
@@ -100,7 +100,9 @@ export function Product({ data }: ProductProps) {
 					</button>
 				</ButtonsWrapper>
 			</CartWrapper>
-			<InfoMessage>{infoMessage}</InfoMessage>
+			<Link to="/checkout" style={{ textDecoration: 'none' }}>
+				<InfoMessage>{infoMessage}</InfoMessage>
+			</Link>
 		</Container>
 	)
 }
