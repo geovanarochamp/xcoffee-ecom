@@ -13,7 +13,7 @@ import {
 } from './style'
 
 export function Order() {
-	const { cartItems } = useCart()
+	const { cartItems, setCartItems } = useCart()
 	const [amount, setAmount] = useState(0)
 
 	function handleRemoveAmount() {
@@ -22,6 +22,11 @@ export function Order() {
 
 	function handleAddAmount() {
 		setAmount((amount) => amount + 1)
+	}
+
+	function handleRemoveItem(id: string) {
+		const cartItemsWithOutItem = cartItems.filter((item) => item.id !== id)
+		setCartItems(cartItemsWithOutItem)
 	}
 
 	const itemTotal = 29.7
@@ -47,7 +52,7 @@ export function Order() {
 											<Plus size={15} weight="bold" />
 										</button>
 									</Amount>
-									<button>
+									<button onClick={() => handleRemoveItem(item.id)}>
 										<Trash size={15} /> Remover
 									</button>
 								</ButtonsWrapper>
