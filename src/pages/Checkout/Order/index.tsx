@@ -46,7 +46,7 @@ export function Order() {
 								</Amount>
 							</div>
 						</div>
-						<strong>{item.price}</strong>
+						<strong>R$ {item.price}</strong>
 					</ItemWrapper>
 				))}
 			</div>
