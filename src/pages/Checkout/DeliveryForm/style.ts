@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import InputMask from 'react-input-mask'
 
 export const Container = styled.div`
 	padding: 4rem;
@@ -42,10 +43,11 @@ export const Form = styled.form`
 		border: 1px solid ${(props) => props.theme['gray-400']};
 		border-radius: 4px;
 		font-size: 1.4rem;
+		text-transform: uppercase;
 	}
 `
 
-export const CepInput = styled.input`
+export const CepInput = styled(InputMask)`
 	width: 25%;
 `
 

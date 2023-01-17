@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import InputMask from 'react-input-mask'
 import { MapPinLine } from 'phosphor-react'
 import {
 	CepInput,
@@ -9,7 +11,18 @@ import {
 	TitleWrapper,
 } from './style'
 
+export function handleCepInput() {}
+
 export function DeliveryForm() {
+	const [cep, setCep] = useState('')
+	const [street, setStreet] = useState('')
+	const [number, setNumber] = useState('')
+	const [complement, setComplement] = useState('')
+	const [neighborhood, setNeighborhood] = useState('')
+	const [city, setCity] = useState('')
+	const [state, setState] = useState('')
+	console.log(cep)
+
 	return (
 		<Container>
 			<Header>
@@ -21,16 +34,44 @@ export function DeliveryForm() {
 			</Header>
 
 			<Form>
-				<CepInput type="text" placeholder="CEP" />
-				<input type="text" placeholder="Rua" />
+				<CepInput
+					mask="99999-999"
+					placeholder="CEP"
+					onChange={(e) => setCep(e.target.value)}
+				/>
+				<InputMask
+					mask="999999999"
+					placeholder="Rua"
+					onChange={(e) => setStreet(e.target.value)}
+				/>
 				<Col2>
-					<input type="text" placeholder="Número" />
-					<input type="text" placeholder="Complemento" />
+					<InputMask
+						mask="999999999"
+						placeholder="Número"
+						onChange={(e) => setNumber(e.target.value)}
+					/>
+					<InputMask
+						mask="99999"
+						placeholder="Complemento"
+						onChange={(e) => setComplement(e.target.value)}
+					/>
 				</Col2>
 				<Col3>
-					<input type="text" placeholder="Bairro" />
-					<input type="text" placeholder="Cidade" />
-					<input type="text" placeholder="UF" />
+					<InputMask
+						mask="99999"
+						placeholder="Bairro"
+						onChange={(e) => setNeighborhood(e.target.value)}
+					/>
+					<InputMask
+						mask="99999"
+						placeholder="Cidade"
+						onChange={(e) => setCity(e.target.value)}
+					/>
+					<InputMask
+						mask="aa"
+						placeholder="UF"
+						onChange={(e) => setState(e.target.value)}
+					/>
 				</Col3>
 			</Form>
 		</Container>
