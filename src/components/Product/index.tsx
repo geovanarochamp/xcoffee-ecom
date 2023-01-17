@@ -100,7 +100,7 @@ export function Product({ data }: ProductProps) {
 					</button>
 				</ButtonsWrapper>
 			</CartWrapper>
-			<Link to="/checkout" style={{ textDecoration: 'none' }}>
+			<Link to="/checkout" style={{ textDecoration: 'none', padding: '.5rem' }}>
 				<InfoMessage>{infoMessage}</InfoMessage>
 			</Link>
 		</Container>

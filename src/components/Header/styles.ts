@@ -15,6 +15,7 @@ export const HeaderContainer = styled.header`
 	padding: 3.2rem 0;
 
 	img {
+		padding: 0.5rem;
 		width: 13rem;
 		cursor: pointer;
 	}
