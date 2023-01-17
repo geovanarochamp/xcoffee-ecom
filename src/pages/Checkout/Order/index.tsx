@@ -1,4 +1,5 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
+import { Link } from 'react-router-dom'
 import { useCart } from '../../../hooks/cart'
 import {
 	Amount,
@@ -121,8 +122,9 @@ export function Order() {
 							</strong>
 						</TotalInfo>
 					</TotalWrapper>
-
-					<ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
+					<Link to="/successOrder">
+						<ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
+					</Link>
 				</>
 			) : (
 				<h4>Não há itens no carrinho.</h4>

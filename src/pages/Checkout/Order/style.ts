@@ -16,6 +16,7 @@ export const ItemWrapper = styled.div`
 	margin-bottom: 2.8rem;
 	border-bottom: 1px solid ${(props) => props.theme['gray-500']};
 	display: flex;
+	gap: 0.8rem;
 	align-items: flex-start;
 	justify-content: space-between;
 	color: ${(props) => props.theme['gray-800']};
@@ -26,6 +27,10 @@ export const ItemWrapper = styled.div`
 
 	span {
 		font-size: 1.6rem;
+	}
+
+	strong {
+		text-align: right;
 	}
 `
 

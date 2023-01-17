@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	width: 70vw;
+	width: 75vw;
 	margin: 0 auto 8rem;
 `
 export const Wrapper3Col = styled.div`

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	width: 100%;
 	padding: 4rem;
 	background: ${(props) => props.theme['gray-200']};
 	border-radius: 6px;
@@ -27,7 +26,7 @@ export const TitleWrapper = styled.div`
 	}
 
 	span {
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 		color: ${(props) => props.theme['gray-700']};
 	}
 `
@@ -36,6 +35,7 @@ export const ButtonWrapper = styled.div`
 	margin-top: 3.2rem;
 	display: flex;
 	gap: 1.2rem;
+	flex-wrap: wrap;
 
 	button {
 		display: flex;

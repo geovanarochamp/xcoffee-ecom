@@ -4,7 +4,7 @@ export const BackgroundColor = styled.div`
 	background: ${(props) => props.theme['bg-light-color']};
 `
 export const Wrapper = styled.div`
-	width: 70vw;
+	width: 75vw;
 	margin: auto;
 `
 

@@ -26,7 +26,7 @@ export const TitleWrapper = styled.div`
 	}
 
 	span {
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 		color: ${(props) => props.theme['gray-700']};
 	}
 `
@@ -46,26 +46,34 @@ export const Form = styled.form`
 `
 
 export const CepInput = styled.input`
-	width: auto;
+	width: 25%;
 `
 
 export const Col2 = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-	column-gap: 1.2rem;
+	display: flex;
+	gap: 1.2rem;
+
+	& input:first-child {
+		width: 50%;
+	}
+
+	& input:nth-child(2) {
+		width: 50%;
+	}
 `
 
 export const Col3 = styled.div`
 	display: flex;
 	gap: 1.2rem;
 	flex: 1;
-	:nth-of-type(1) {
-		flex-grow: 2;
+
+	& input:first-child {
+		width: 25%;
 	}
-	:nth-of-type(2) {
-		flex-grow: 3;
+	& input:nth-child(2) {
+		width: 60%;
 	}
-	:nth-of-type(3) {
-		flex-grow: 1;
+	& input:nth-child(3) {
+		width: 15%;
 	}
 `

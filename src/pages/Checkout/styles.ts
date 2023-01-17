@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	width: 70vw;
+	width: 75vw;
 	margin: 2rem auto 0;
 	display: flex;
 	gap: 3.2rem;
@@ -12,7 +12,7 @@ export const Container = styled.div`
 	}
 `
 export const ButtonWrapper = styled.div`
-	width: 70vw;
+	width: 75vw;
 	margin: 2rem auto 0;
 	display: flex;
 	align-items: center;
@@ -43,10 +43,10 @@ export const FormsWrapper = styled.div`
 	flex-direction: column;
 	gap: 1.2rem;
 	flex: 1;
-	width: 65%;
+	width: 60%;
 `
 export const OrderWrapper = styled.div`
-	width: 35%;
+	width: 40%;
 	display: flex;
 	flex-direction: column;
 	gap: 1.2rem;

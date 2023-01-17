@@ -5,7 +5,7 @@ export const ImageBackground = styled.div`
 	background-position: top;
 `
 export const Container = styled.div`
-	width: 70vw;
+	width: 75vw;
 	margin: auto;
 `
 
