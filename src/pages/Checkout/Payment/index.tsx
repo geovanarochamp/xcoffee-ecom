@@ -1,7 +1,16 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
+import { FieldValues, UseFormSetValue } from 'react-hook-form/dist/types'
 import { ButtonWrapper, Container, Header, TitleWrapper } from './style'
 
-export function Payment() {
+type PaymentProps = {
+	setValue: UseFormSetValue<FieldValues>
+}
+
+export function Payment({ setValue }: PaymentProps) {
+	function handleClickPayment(paymentType: string) {
+		setValue('paymentType', paymentType)
+	}
+
 	return (
 		<Container>
 			<Header>
@@ -15,13 +24,13 @@ export function Payment() {
 			</Header>
 
 			<ButtonWrapper>
-				<button>
+				<button onClick={() => handleClickPayment('Cartão de crédito')}>
 					<CreditCard size={18} /> CARTÃO DE CRÉDITO
 				</button>
-				<button>
+				<button onClick={() => handleClickPayment('Cartão de débito')}>
 					<Bank size={18} /> CARTÃO DE DÉBITO
 				</button>
-				<button>
+				<button onClick={() => handleClickPayment('Dinheiro')}>
 					<Money size={18} /> DINHEIRO
 				</button>
 			</ButtonWrapper>

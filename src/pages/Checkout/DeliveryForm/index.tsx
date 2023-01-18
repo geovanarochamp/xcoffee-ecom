@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import InputMask from 'comigo-tech-react-input-mask'
+import { FieldValues, UseFormRegister } from 'react-hook-form/dist/types'
 import { MapPinLine } from 'phosphor-react'
 import {
 	CepInput,
@@ -11,18 +11,11 @@ import {
 	TitleWrapper,
 } from './style'
 
-export function handleCepInput() {}
+type DeliveryFormProps = {
+	register: UseFormRegister<FieldValues>
+}
 
-export function DeliveryForm() {
-	const [cep, setCep] = useState('')
-	const [street, setStreet] = useState('')
-	const [number, setNumber] = useState('')
-	const [complement, setComplement] = useState('')
-	const [neighborhood, setNeighborhood] = useState('')
-	const [city, setCity] = useState('')
-	const [state, setState] = useState('')
-	console.log(cep)
-
+export function DeliveryForm({ register }: DeliveryFormProps) {
 	return (
 		<Container>
 			<Header>
@@ -33,37 +26,40 @@ export function DeliveryForm() {
 				</TitleWrapper>
 			</Header>
 
-			<Form>
+			<Form id="deliveryForm">
 				<CepInput
 					mask="99999-999"
 					placeholder="CEP"
-					onChange={(e) => setCep(e.target.value)}
+					{...(register('cep'), { required: true })}
 				/>
-				<input placeholder="Rua" onChange={(e) => setStreet(e.target.value)} />
+				<input
+					placeholder="Rua"
+					{...(register('address'), { required: true })}
+				/>
 				<Col2>
 					<InputMask
 						mask="999999999"
 						placeholder="Número"
-						onChange={(e) => setNumber(e.target.value)}
+						{...register('addressNumber', {
+							valueAsNumber: true,
+							required: true,
+						})}
 					/>
-					<input
-						placeholder="Complemento"
-						onChange={(e) => setComplement(e.target.value)}
-					/>
+					<input placeholder="Complemento" {...register('addressComplement')} />
 				</Col2>
 				<Col3>
 					<input
 						placeholder="Bairro"
-						onChange={(e) => setNeighborhood(e.target.value)}
+						{...(register('neighborhood'), { required: true })}
 					/>
 					<input
 						placeholder="Cidade"
-						onChange={(e) => setCity(e.target.value)}
+						{...(register('city'), { required: true })}
 					/>
 					<InputMask
 						mask="aa"
 						placeholder="UF"
-						onChange={(e) => setState(e.target.value)}
+						{...(register('state'), { required: true })}
 					/>
 				</Col3>
 			</Form>

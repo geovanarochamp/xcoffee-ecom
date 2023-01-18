@@ -1,5 +1,5 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import { Link } from 'react-router-dom'
+import { FieldValues, UseFormGetValues } from 'react-hook-form/dist/types'
 import { useCart } from '../../../hooks/cart'
 import {
 	Amount,
@@ -21,7 +21,11 @@ type CartItemsData = {
 	total: number
 }
 
-export function Order() {
+type OrderProps = {
+	getValues: UseFormGetValues<FieldValues>
+}
+
+export function Order({ getValues }: OrderProps) {
 	const { cartItems, setCartItems } = useCart()
 
 	function setNewItem(newItem: CartItemsData) {
@@ -71,6 +75,10 @@ export function Order() {
 	}
 	let itemTotal = 0
 	const deliveryFee = 3.5
+
+	function handleSubmitForm() {
+		console.log('entrei')
+	}
 
 	return (
 		<Container>
@@ -122,9 +130,13 @@ export function Order() {
 							</strong>
 						</TotalInfo>
 					</TotalWrapper>
-					<Link to="/successOrder">
-						<ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
-					</Link>
+					<ConfirmOrderButton
+						form="deliveryForm"
+						type="submit"
+						onSubmit={handleSubmitForm}
+					>
+						CONFIRMAR PEDIDO
+					</ConfirmOrderButton>
 				</>
 			) : (
 				<h4>Não há itens no carrinho.</h4>

@@ -1,5 +1,8 @@
 import { ArrowLeft } from 'phosphor-react'
+
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+
 import { DeliveryForm } from './DeliveryForm'
 import { Order } from './Order'
 import { Payment } from './Payment'
@@ -12,6 +15,8 @@ import {
 } from './styles'
 
 export function Checkout() {
+	const { register, setValue, getValues } = useForm()
+
 	return (
 		<>
 			<Link to="/" style={{ textDecoration: 'none' }}>
@@ -25,12 +30,12 @@ export function Checkout() {
 			<Container>
 				<FormsWrapper>
 					<strong>Complete seu Pedido</strong>
-					<DeliveryForm />
-					<Payment />
+					<DeliveryForm register={register} />
+					<Payment setValue={setValue} />
 				</FormsWrapper>
 				<OrderWrapper>
 					<strong>Cafés selecionados</strong>
-					<Order />
+					<Order getValues={getValues} />
 				</OrderWrapper>
 			</Container>
 		</>
