@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import InputMask from 'react-input-mask'
+import InputMask from 'comigo-tech-react-input-mask'
 
 export const Container = styled.div`
 	padding: 4rem;

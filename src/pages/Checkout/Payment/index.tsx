@@ -7,7 +7,7 @@ export function Payment() {
 			<Header>
 				<CurrencyDollar size={20} />
 				<TitleWrapper>
-					<h4>Endereço de entrega</h4>
+					<h4>Pagamento</h4>
 					<span>
 						O pagamento é feito na entrega. Escolha a forma que deseja pagar
 					</span>

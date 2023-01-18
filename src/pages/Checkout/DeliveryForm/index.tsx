@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import InputMask from 'react-input-mask'
+import InputMask from 'comigo-tech-react-input-mask'
 import { MapPinLine } from 'phosphor-react'
 import {
 	CepInput,
@@ -39,31 +39,24 @@ export function DeliveryForm() {
 					placeholder="CEP"
 					onChange={(e) => setCep(e.target.value)}
 				/>
-				<InputMask
-					mask="999999999"
-					placeholder="Rua"
-					onChange={(e) => setStreet(e.target.value)}
-				/>
+				<input placeholder="Rua" onChange={(e) => setStreet(e.target.value)} />
 				<Col2>
 					<InputMask
 						mask="999999999"
 						placeholder="Número"
 						onChange={(e) => setNumber(e.target.value)}
 					/>
-					<InputMask
-						mask="99999"
+					<input
 						placeholder="Complemento"
 						onChange={(e) => setComplement(e.target.value)}
 					/>
 				</Col2>
 				<Col3>
-					<InputMask
-						mask="99999"
+					<input
 						placeholder="Bairro"
 						onChange={(e) => setNeighborhood(e.target.value)}
 					/>
-					<InputMask
-						mask="99999"
+					<input
 						placeholder="Cidade"
 						onChange={(e) => setCity(e.target.value)}
 					/>

@@ -9,6 +9,11 @@ export const Container = styled.div`
 	strong {
 		font-size: 1.6rem;
 	}
+
+	h4 {
+		font-size: 1.6rem;
+		color: ${(props) => props.theme['gray-800']};
+	}
 `
 
 export const ItemWrapper = styled.div`
