@@ -37,29 +37,68 @@ export const ButtonWrapper = styled.div`
 	gap: 1.2rem;
 	flex-wrap: wrap;
 
-	button {
-		display: flex;
-		align-items: center;
-		gap: 1.2rem;
-		padding: 1.6rem;
-
-		background: ${(props) => props.theme['gray-400']};
-		border: none;
-		border-radius: 4px;
-
-		font-size: 1.2rem;
-		text-transform: uppercase;
-		color: ${(props) => props.theme['gray-700']};
-
-		cursor: pointer;
-		flex: 1;
-
-		&:focus {
-			background: ${(props) => props.theme['primary-light']};
-		}
-	}
-
 	svg {
 		color: ${(props) => props.theme['primary-dark']};
 	}
+`
+
+export const CreditCardButton = styled.button`
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+	padding: 1.6rem;
+
+	background: ${(props) =>
+		props.paymentType === 'Cartão de crédito'
+			? props.theme['primary-light']
+			: props.theme['gray-400']};
+	border: none;
+	border-radius: 4px;
+
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	color: ${(props) => props.theme['gray-700']};
+
+	cursor: pointer;
+	flex: 1;
+`
+export const DebitCardButton = styled.button`
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+	padding: 1.6rem;
+
+	background: ${(props) =>
+		props.paymentType === 'Cartão de débito'
+			? props.theme['primary-light']
+			: props.theme['gray-400']};
+	border: none;
+	border-radius: 4px;
+
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	color: ${(props) => props.theme['gray-700']};
+
+	cursor: pointer;
+	flex: 1;
+`
+export const MoneyButton = styled.button`
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+	padding: 1.6rem;
+
+	background: ${(props) =>
+		props.paymentType === 'Dinheiro'
+			? props.theme['primary-light']
+			: props.theme['gray-400']};
+	border: none;
+	border-radius: 4px;
+
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	color: ${(props) => props.theme['gray-700']};
+
+	cursor: pointer;
+	flex: 1;
 `

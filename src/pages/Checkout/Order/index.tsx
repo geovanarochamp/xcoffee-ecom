@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 import { FieldValues, UseFormGetValues } from 'react-hook-form/dist/types'
+import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../../hooks/cart'
 import {
 	Amount,
@@ -27,12 +28,17 @@ type OrderProps = {
 
 export function Order({ getValues }: OrderProps) {
 	const { cartItems, setCartItems } = useCart()
+	const navigate = useNavigate()
 
 	function setNewItem(newItem: CartItemsData) {
 		const cartItemsWithOutItem = cartItems.filter(
 			(item) => item.id !== newItem.id,
 		)
 		setCartItems([...cartItemsWithOutItem, newItem])
+		localStorage.setItem(
+			'cartItems',
+			JSON.stringify([...cartItemsWithOutItem, newItem]),
+		)
 	}
 
 	function handleRemoveAmount(item: CartItemsData) {
@@ -72,12 +78,18 @@ export function Order({ getValues }: OrderProps) {
 	function handleRemoveItem(id: string) {
 		const cartItemsWithOutItem = cartItems.filter((item) => item.id !== id)
 		setCartItems(cartItemsWithOutItem)
+		localStorage.setItem('cartItems', JSON.stringify(cartItemsWithOutItem))
 	}
 	let itemTotal = 0
 	const deliveryFee = 3.5
 
 	function handleSubmitForm() {
-		console.log('entrei')
+		const form = getValues()
+		if (form.paymentType) {
+			navigate('/successOrder')
+		} else {
+			alert('Escolha a forma de pagamento.')
+		}
 	}
 
 	return (
@@ -133,7 +145,7 @@ export function Order({ getValues }: OrderProps) {
 					<ConfirmOrderButton
 						form="deliveryForm"
 						type="submit"
-						onSubmit={handleSubmitForm}
+						onClick={handleSubmitForm}
 					>
 						CONFIRMAR PEDIDO
 					</ConfirmOrderButton>

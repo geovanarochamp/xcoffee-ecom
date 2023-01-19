@@ -28,6 +28,7 @@ export const BackButton = styled.button`
 	border-radius: 9999px;
 	background: ${(props) => props.theme.white};
 	color: ${(props) => props.theme['primary-dark']};
+	padding: 1rem;
 
 	cursor: pointer;
 	transition: all 0.3s;

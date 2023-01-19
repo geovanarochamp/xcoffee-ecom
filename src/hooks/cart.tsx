@@ -30,14 +30,8 @@ function CartProvider({ children }: CartProviderProps) {
 	const [cartItems, setCartItems] = useState<CartItemsData[]>([])
 
 	useEffect(() => {
-		if (cartItems.length > 0) {
-			localStorage.setItem('cartItems', JSON.stringify(cartItems))
-		}
-	}, [cartItems])
-
-	useEffect(() => {
 		const savedCartItems = JSON.parse(localStorage.getItem('cartItems'))
-		console.log(savedCartItems)
+
 		if (savedCartItems.length > 0) {
 			setCartItems(savedCartItems)
 		}

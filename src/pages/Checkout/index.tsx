@@ -1,4 +1,5 @@
 import { ArrowLeft } from 'phosphor-react'
+import { useEffect } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -16,6 +17,9 @@ import {
 
 export function Checkout() {
 	const { register, setValue, getValues } = useForm()
+	useEffect(() => {
+		setValue('paymentType', '')
+	}, [])
 
 	return (
 		<>

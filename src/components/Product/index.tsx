@@ -1,5 +1,5 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../hooks/cart'
 
@@ -53,19 +53,27 @@ export function Product({ data }: ProductProps) {
 			amount,
 			total: data.price * amount,
 		}
+
 		if (newItem.amount > 0) {
 			const checkItemExists = cartItems.filter(
-				(item: ItemProps) => item.id === newItem.id,
+				(item: ItemProps) => item.title === newItem.title,
 			)
 
 			if (checkItemExists) {
 				const removePreviousItemFromCart = cartItems.filter(
-					(item: ItemProps) => item.id !== newItem.id,
+					(item: ItemProps) => item.title !== newItem.title,
 				)
 				setCartItems([...removePreviousItemFromCart, newItem])
+				localStorage.setItem(
+					'cartItems',
+					JSON.stringify([...removePreviousItemFromCart, newItem]),
+				)
 			} else {
-				console.log('entrei')
 				setCartItems([...cartItems, newItem])
+				localStorage.setItem(
+					'cartItems',
+					JSON.stringify([...cartItems, newItem]),
+				)
 			}
 			setInfoMessage('✓ Adicionado ao carrinho')
 		} else {
