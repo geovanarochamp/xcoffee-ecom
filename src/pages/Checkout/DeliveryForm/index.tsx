@@ -1,5 +1,10 @@
 import InputMask from 'comigo-tech-react-input-mask'
-import { FieldValues, UseFormRegister } from 'react-hook-form/dist/types'
+import {
+	FieldValues,
+	UseFormGetValues,
+	UseFormRegister,
+	UseFormSetValue,
+} from 'react-hook-form/dist/types'
 import { MapPinLine } from 'phosphor-react'
 import {
 	CepInput,
@@ -10,26 +15,52 @@ import {
 	Header,
 	TitleWrapper,
 } from './style'
-import { useState } from 'react'
 
 type DeliveryFormProps = {
 	register: UseFormRegister<FieldValues>
+	setValue: UseFormSetValue<FieldValues>
+	getValues: UseFormGetValues<FieldValues>
+	cep: string
 }
 
-export function DeliveryForm({ register }: DeliveryFormProps) {
-	const [cep, setCep] = useState('')
-	const [address, setAddress] = useState({})
+type AddressData = {
+	bairro: string
+	cep: string
+	complemento: string
+	ddd: string
+	gia: string
+	ibge: string
+	localidade: string
+	logradouro: string
+	siafi: string
+	uf: string
+}
 
+export function DeliveryForm({
+	register,
+	setValue,
+	getValues,
+	cep,
+}: DeliveryFormProps) {
 	async function catchAddressByCep() {
-		const cepNum = cep.replace(/[^0-9]/g, '')
-		const response = await fetch(`https://viacep.com.br/ws/${cepNum}/json/`)
-		const data = await response.json()
-		setAddress(data)
-		console.log(data)
-		// setInputsWithAddress()
-	}
+		if (cep) {
+			const cepNum = cep.replace(/[^0-9]/g, '')
 
-	// function setInputsWithAddress() {}
+			if (cepNum.length === 8) {
+				await fetch(`https://viacep.com.br/ws/${cepNum}/json/`)
+					.then((response) => response.json())
+					.then((data: AddressData) => {
+						setValue('address', data.logradouro)
+						setValue('neighborhood', data.bairro)
+						setValue('city', data.localidade)
+						setValue('state', data.uf)
+					})
+					.catch((error) => {
+						console.log(error)
+					})
+			}
+		}
+	}
 
 	return (
 		<Container>
@@ -44,19 +75,14 @@ export function DeliveryForm({ register }: DeliveryFormProps) {
 			<Form id="deliveryForm">
 				<CepInput
 					mask="99999-999"
-					onChange={(e) => setCep(e.target.value)}
-					onBlur={catchAddressByCep}
 					placeholder="CEP"
-					{...(register('cep'), { required: true })}
+					{...register('cep', { required: true })}
+					onBlur={catchAddressByCep}
 				/>
-				<input
-					value={address ? address.logradouro : ''}
-					placeholder="Rua"
-					{...(register('address'), { required: true })}
-				/>
+				<input placeholder="Rua" {...register('address', { required: true })} />
 				<Col2>
 					<InputMask
-						mask="999999999"
+						type="number"
 						placeholder="Número"
 						{...register('addressNumber', {
 							valueAsNumber: true,
@@ -67,20 +93,17 @@ export function DeliveryForm({ register }: DeliveryFormProps) {
 				</Col2>
 				<Col3>
 					<input
-						value={address ? address.bairro : ''}
 						placeholder="Bairro"
-						{...(register('neighborhood'), { required: true })}
+						{...register('neighborhood', { required: true })}
 					/>
 					<input
-						value={address ? address.localidade : ''}
 						placeholder="Cidade"
-						{...(register('city'), { required: true })}
+						{...register('city', { required: true })}
 					/>
 					<InputMask
-						value={address ? address.uf : ''}
 						mask="aa"
 						placeholder="UF"
-						{...(register('state'), { required: true })}
+						{...register('state', { required: true })}
 					/>
 				</Col3>
 			</Form>

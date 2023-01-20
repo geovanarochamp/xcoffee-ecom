@@ -45,6 +45,16 @@ export const Form = styled.form`
 		font-size: 1.4rem;
 		text-transform: uppercase;
 	}
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type='number'] {
+		-moz-appearance: textfield;
+	}
 `
 
 export const CepInput = styled(InputMask)`

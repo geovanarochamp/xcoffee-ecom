@@ -16,11 +16,13 @@ import {
 } from './styles'
 
 export function Checkout() {
-	const { register, setValue, getValues } = useForm()
+	const { register, setValue, getValues, watch } = useForm()
 
 	useEffect(() => {
 		setValue('paymentType', '')
 	}, [])
+
+	const cep = watch('cep')
 
 	return (
 		<>
@@ -35,7 +37,12 @@ export function Checkout() {
 			<Container>
 				<FormsWrapper>
 					<strong>Complete seu Pedido</strong>
-					<DeliveryForm register={register} />
+					<DeliveryForm
+						register={register}
+						setValue={setValue}
+						getValues={getValues}
+						cep={cep}
+					/>
 					<Payment setValue={setValue} />
 				</FormsWrapper>
 				<OrderWrapper>
