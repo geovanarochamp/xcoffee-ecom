@@ -30,7 +30,9 @@ function CartProvider({ children }: CartProviderProps) {
 	const [cartItems, setCartItems] = useState<CartItemsData[]>([])
 
 	useEffect(() => {
-		const savedCartItems = JSON.parse(localStorage.getItem('cartItems'))
+		const savedCartItems = JSON.parse(
+			localStorage.getItem('@xcoffee:cartItems'),
+		)
 
 		if (savedCartItems.length > 0) {
 			setCartItems(savedCartItems)

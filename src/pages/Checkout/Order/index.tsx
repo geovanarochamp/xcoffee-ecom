@@ -1,5 +1,10 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import { FieldValues, UseFormGetValues } from 'react-hook-form/dist/types'
+import {
+	FieldValues,
+	FormState,
+	UseFormGetValues,
+	UseFormHandleSubmit,
+} from 'react-hook-form/dist/types'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../../hooks/cart'
 import {
@@ -24,9 +29,11 @@ type CartItemsData = {
 
 type OrderProps = {
 	getValues: UseFormGetValues<FieldValues>
+	formState: FormState<FieldValues>
+	handleSubmit: UseFormHandleSubmit<FieldValues>
 }
 
-export function Order({ getValues }: OrderProps) {
+export function Order({ getValues, formState, handleSubmit }: OrderProps) {
 	const { cartItems, setCartItems } = useCart()
 	const navigate = useNavigate()
 
@@ -36,7 +43,7 @@ export function Order({ getValues }: OrderProps) {
 		)
 		setCartItems([...cartItemsWithOutItem, newItem])
 		localStorage.setItem(
-			'cartItems',
+			'@xcoffee:cartItems',
 			JSON.stringify([...cartItemsWithOutItem, newItem]),
 		)
 	}
@@ -78,24 +85,26 @@ export function Order({ getValues }: OrderProps) {
 	function handleRemoveItem(id: string) {
 		const cartItemsWithOutItem = cartItems.filter((item) => item.id !== id)
 		setCartItems(cartItemsWithOutItem)
-		localStorage.setItem('cartItems', JSON.stringify(cartItemsWithOutItem))
+		localStorage.setItem(
+			'@xcoffee:cartItems',
+			JSON.stringify(cartItemsWithOutItem),
+		)
 	}
+
 	let itemTotal = 0
 	const deliveryFee = 3.5
 
 	function handleSubmitForm() {
 		const form = getValues()
+
 		if (form.paymentType) {
+			localStorage.setItem('@xcoffee:address', JSON.stringify(form))
 			navigate('/successOrder')
 		} else {
 			alert('Escolha a forma de pagamento.')
 		}
 	}
-
-	function displayAlert() {
-		alert('entrei')
-	}
-
+	localStorage.setItem('@xcoffee:address', JSON.stringify(''))
 	return (
 		<Container>
 			{cartItems.length > 0 ? (
@@ -148,8 +157,7 @@ export function Order({ getValues }: OrderProps) {
 					</TotalWrapper>
 					<ConfirmOrderButton
 						form="deliveryForm"
-						type="submit"
-						onSubmit={displayAlert}
+						onClick={handleSubmit(handleSubmitForm)}
 					>
 						CONFIRMAR PEDIDO
 					</ConfirmOrderButton>
