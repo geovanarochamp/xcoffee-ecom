@@ -99,6 +99,8 @@ export function Order({ getValues, formState, handleSubmit }: OrderProps) {
 
 		if (form.paymentType) {
 			localStorage.setItem('@xcoffee:address', JSON.stringify(form))
+			localStorage.removeItem('@xcoffee:cartItems')
+			setCartItems([])
 			navigate('/successOrder')
 		} else {
 			alert('Escolha a forma de pagamento.')

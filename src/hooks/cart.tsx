@@ -34,8 +34,10 @@ function CartProvider({ children }: CartProviderProps) {
 			localStorage.getItem('@xcoffee:cartItems'),
 		)
 
-		if (savedCartItems.length > 0) {
-			setCartItems(savedCartItems)
+		if (savedCartItems) {
+			if (savedCartItems.length > 0) {
+				setCartItems(savedCartItems)
+			}
 		}
 	}, [])
 	return (
