@@ -70,10 +70,10 @@ export const Col3 = styled.div`
 	flex: 1;
 
 	& input:first-child {
-		width: 25%;
+		width: 35%;
 	}
 	& input:nth-child(2) {
-		width: 60%;
+		width: 50%;
 	}
 	& input:nth-child(3) {
 		width: 15%;

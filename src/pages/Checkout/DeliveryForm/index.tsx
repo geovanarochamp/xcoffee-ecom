@@ -10,12 +10,27 @@ import {
 	Header,
 	TitleWrapper,
 } from './style'
+import { useState } from 'react'
 
 type DeliveryFormProps = {
 	register: UseFormRegister<FieldValues>
 }
 
 export function DeliveryForm({ register }: DeliveryFormProps) {
+	const [cep, setCep] = useState('')
+	const [address, setAddress] = useState({})
+
+	async function catchAddressByCep() {
+		const cepNum = cep.replace(/[^0-9]/g, '')
+		const response = await fetch(`https://viacep.com.br/ws/${cepNum}/json/`)
+		const data = await response.json()
+		setAddress(data)
+		console.log(data)
+		// setInputsWithAddress()
+	}
+
+	// function setInputsWithAddress() {}
+
 	return (
 		<Container>
 			<Header>
@@ -29,10 +44,13 @@ export function DeliveryForm({ register }: DeliveryFormProps) {
 			<Form id="deliveryForm">
 				<CepInput
 					mask="99999-999"
+					onChange={(e) => setCep(e.target.value)}
+					onBlur={catchAddressByCep}
 					placeholder="CEP"
 					{...(register('cep'), { required: true })}
 				/>
 				<input
+					value={address ? address.logradouro : ''}
 					placeholder="Rua"
 					{...(register('address'), { required: true })}
 				/>
@@ -49,14 +67,17 @@ export function DeliveryForm({ register }: DeliveryFormProps) {
 				</Col2>
 				<Col3>
 					<input
+						value={address ? address.bairro : ''}
 						placeholder="Bairro"
 						{...(register('neighborhood'), { required: true })}
 					/>
 					<input
+						value={address ? address.localidade : ''}
 						placeholder="Cidade"
 						{...(register('city'), { required: true })}
 					/>
 					<InputMask
+						value={address ? address.uf : ''}
 						mask="aa"
 						placeholder="UF"
 						{...(register('state'), { required: true })}

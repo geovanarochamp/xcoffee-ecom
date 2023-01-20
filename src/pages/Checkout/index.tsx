@@ -17,6 +17,7 @@ import {
 
 export function Checkout() {
 	const { register, setValue, getValues } = useForm()
+
 	useEffect(() => {
 		setValue('paymentType', '')
 	}, [])

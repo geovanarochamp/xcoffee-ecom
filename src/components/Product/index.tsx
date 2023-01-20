@@ -65,13 +65,13 @@ export function Product({ data }: ProductProps) {
 				)
 				setCartItems([...removePreviousItemFromCart, newItem])
 				localStorage.setItem(
-					'cartItems',
+					'@xcoffee:cartItems',
 					JSON.stringify([...removePreviousItemFromCart, newItem]),
 				)
 			} else {
 				setCartItems([...cartItems, newItem])
 				localStorage.setItem(
-					'cartItems',
+					'@xcoffee:cartItems',
 					JSON.stringify([...cartItems, newItem]),
 				)
 			}

@@ -92,6 +92,10 @@ export function Order({ getValues }: OrderProps) {
 		}
 	}
 
+	function displayAlert() {
+		alert('entrei')
+	}
+
 	return (
 		<Container>
 			{cartItems.length > 0 ? (
@@ -145,7 +149,7 @@ export function Order({ getValues }: OrderProps) {
 					<ConfirmOrderButton
 						form="deliveryForm"
 						type="submit"
-						onClick={handleSubmitForm}
+						onSubmit={displayAlert}
 					>
 						CONFIRMAR PEDIDO
 					</ConfirmOrderButton>
